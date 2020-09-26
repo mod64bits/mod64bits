@@ -1,0 +1,5 @@
+DEBUG=False
+SECRET_KEY=SuaChaveSecreta
+DATABASE_URL=localhost://postgres:postgres@localhost/testedb
+INTERNAL_IPS=127.0.0.1
+SENTRY_DSN=suadsn
