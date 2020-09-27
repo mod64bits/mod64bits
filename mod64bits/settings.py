@@ -17,6 +17,8 @@ DEBUG = config('DEBUG', cast=bool)
 
 ALLOWED_HOSTS = []
 
+AUTH_USER_MODEL = 'apps.usuarios.User'
+
 
 # Application definition
 
