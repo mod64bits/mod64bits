@@ -27,6 +27,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'apps.home',
 ]
 
 MIDDLEWARE = [
@@ -67,7 +68,7 @@ WSGI_APPLICATION = 'mod64bits.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mod64bits',
+        'NAME': 'mod_site',
         'USER': 'mod64bits',
         'PASSWORD': 'DjangoTeste',
         'HOST': 'localhost',
