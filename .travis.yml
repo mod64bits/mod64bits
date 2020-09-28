@@ -13,6 +13,9 @@ env:
   global:
     - PIPENV_VENV_IN_PROJECT=1
     - PIPENV_IGNORE_VIRTUALENVS=1
+    - DATABASE_NAME = 'mod_site'
+    -DATABASE_USER = 'mod64bits'
+    - DATABASE_PASSWORD = 'DjangoTeste'
 
 install:
   - pip install pipenv
@@ -20,7 +23,7 @@ install:
   - cp contrib/env-sample .env
 
 before_script:
-  - psql -c "CREATE DATABASE testdb;" -U postgres
+  - psql -c "CREATE DATABASE mod_site;" -U mod64bits
 
 script:
 #  - pipenv run flake8 .
