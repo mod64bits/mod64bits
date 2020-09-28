@@ -4,6 +4,10 @@ sudo: true
 
 python:
   - 3.8
+services:
+  postgresql
+addons:
+  postgresql: '9.5'
 
 env:
   global:
