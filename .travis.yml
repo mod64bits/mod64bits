@@ -15,12 +15,12 @@ install:
   - pipenv sync -d
   - cp contrib/env-sample .env
 
-#before_script:
-#  - psql -c "CREATE DATABASE testdb;" -U postgres -W
-#
+before_script:
+  - psql -c "CREATE DATABASE testdb;" -U postgres
+
 script:
 #  - pipenv run flake8 .
   - pipenv run pytest --cov=apps
 
-#after_success:
-#  - pipenv run codecov
+after_success:
+  - pipenv run codecov
