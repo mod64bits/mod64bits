@@ -1,7 +1,7 @@
 [![Build Status](https://travis-ci.org/mod64bits/mod64bits.svg?branch=master)](https://travis-ci.org/mod64bits/mod64bits)
 # mod64bits
 
-![Badge](https://img.shields.io/badge/Phynton-Django-%237159c1?style=for-the-badge&logo=ghost)
+
 ![Badge](https://img.shields.io/badge/python-developer-brightgreen)
 
 ## Sobre mim
