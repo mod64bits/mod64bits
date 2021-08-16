@@ -1,11 +1,14 @@
 [![Build Status](https://travis-ci.org/mod64bits/mod64bits.svg?branch=master)](https://travis-ci.org/mod64bits/mod64bits)
 # mod64bits
 
-
 ![Badge](https://img.shields.io/badge/python-developer-brightgreen)
 
-## Sobre mim
-<p align="center">Apaixonado por tecnologia e programação </p>
+## About
+<p align="center">
+    I am a developer with experience in web development and distributed architectures. Having worked most of my career on the .django stack, at the companies I've worked I've always used python and django to eliminate spreadsheets and solve internal problems. In my career, in the madness of projects and life's setbacks, I have already acted in the roles of network analyst in electronic security companies.
+I've been hooked up with small site developer tasks using django, freelance and, why not, the guy who makes the coffee.
+
+</p>
 
 <h1 align="center">
     <a href="https://www.djangoproject.com/">🔗 Python & Django</a>

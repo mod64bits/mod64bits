@@ -1,26 +1,25 @@
 from pathlib import Path
 import os
-from decouple import config, Csv
+
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.1/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = config('SECRET_KEY')
+SECRET_KEY = 'django-insecure-*t5p#s3#7ll%0=o2d=tc#rl28z7$%07@6&zwz17(7ztp=1-k^('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = config('DEBUG', cast=bool)
+DEBUG = True
 
 ALLOWED_HOSTS = []
 
-AUTH_USER_MODEL = 'usuarios.User'
 
 
-# Application definition
+
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -29,12 +28,22 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'apps.usuarios',
-    'apps.home',
-    'apps.servicos',
+
+    'django_filters',
+    'rest_framework',
+    'taggit',
+    'debug_toolbar',
+    'ckeditor',
+    'ckeditor_uploader',
+    'crispy_forms',
+
+    'blog.apps.BlogConfig',
 ]
 
+INTERNAL_IPS = ['127.0.0.1', '::1']
+
 MIDDLEWARE = [
+    'debug_toolbar.middleware.DebugToolbarMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -49,8 +58,7 @@ ROOT_URLCONF = 'mod64bits.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
-        ,
+        'DIRS': [os.path.join(BASE_DIR, 'templates')],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -69,16 +77,25 @@ WSGI_APPLICATION = 'mod64bits.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
+# DATABASES = {
+#     'default': {
+#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
+#         'NAME': 'mod_site',
+#         'USER': 'mod64bits',
+#         'PASSWORD': 'DjangoTeste',
+#         'HOST': 'localhost',
+#         'PORT': '5432',
+#     }
+# }
+
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'NAME': 'mod_site',
-        'USER': 'mod64bits',
-        'PASSWORD': 'DjangoTeste',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
     }
 }
+
+
 
 
 # Password validation
@@ -119,9 +136,49 @@ DATE_INPUT_FORMATS = ['%d/%m/%Y']
 # https://docs.djangoproject.com/en/3.1/howto/static-files/
 
 STATIC_URL = '/static/'
+
 STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static"),
+    os.path.join(BASE_DIR, "blog/static"),
 ]
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static")
-MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(BASE_DIR, "media")
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_FINDERS = [
+    "django.contrib.staticfiles.finders.FileSystemFinder",
+    "django.contrib.staticfiles.finders.AppDirectoriesFinder",
+]
+
+
+MEDIA_URL = '/media/'
+MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
+
+CRISPY_TEMPLATE_PACK = 'bootstrap4'
+
+# Account Settings
+LOGIN_URL = '/account/login/'
+LOGIN_REDIRECT_URL = '/author/dashboard/'
+LOGOUT_REDIRECT_URL = '/account/logout/'
+
+# Email Settings (Development)
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
+
+# Email Settings (Production)
+# EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+# EMAIL_HOST = 'smtp.sendgrid.net'
+# EMAIL_HOST_USER = ''
+# EMAIL_HOST_PASSWORD = ""
+# EMAIL_PORT = 587
+# EMAIL_USE_TLS = True
+
+
+CKEDITOR_UPLOAD_PATH = 'uploads/'
+CKEDITOR_IMAGE_BACKEND = "pillow"
+
+CKEDITOR_CONFIGS = {
+    'default':
+        {'toolbar': 'full',
+         'width': 'auto',
+         'extraPlugins': ','.join([
+             'codesnippet',
+             'youtube'
+         ]),
+         },
+}
