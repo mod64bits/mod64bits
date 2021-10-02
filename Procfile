@@ -1,1 +1,1 @@
-web: guniconr eventex.wsgi --log-file -
+web: guniconr mod64bits.wsgi --log-file -
