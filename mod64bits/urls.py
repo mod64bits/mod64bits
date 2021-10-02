@@ -5,10 +5,12 @@ from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
 
+from home.views import home
 
 urlpatterns = [
     path('ckeditor/', include('ckeditor_uploader.urls')),
-    path('', include('blog.urls', namespace='blog')),  # Urls for article app.
+    path('', home, name='home'),
+    path('blog/', include('blog.urls', namespace='blog')),  # Urls for article app.
     path('api/v1/article/', include('blog.api.v1.routers.routers')), # Urls for API.
     path('admin/', admin.site.urls),
 

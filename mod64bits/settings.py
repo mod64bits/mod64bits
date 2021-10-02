@@ -1,6 +1,7 @@
 from pathlib import Path
 import os
-
+from decouple import config
+from dj_database_url import parse as dburl
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -13,13 +14,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 SECRET_KEY = 'django-insecure-*t5p#s3#7ll%0=o2d=tc#rl28z7$%07@6&zwz17(7ztp=1-k^('
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = config('DEBUG', default=True, cast=bool)
 
-ALLOWED_HOSTS = []
-
-
-
-
+ALLOWED_HOSTS = ['*']
 
 INSTALLED_APPS = [
     'django.contrib.admin',
@@ -38,6 +35,7 @@ INSTALLED_APPS = [
     'crispy_forms',
 
     'blog.apps.BlogConfig',
+    'home',
 ]
 
 INTERNAL_IPS = ['127.0.0.1', '::1']
@@ -77,22 +75,12 @@ WSGI_APPLICATION = 'mod64bits.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.1/ref/settings/#databases
 
-# DATABASES = {
-#     'default': {
-#         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-#         'NAME': 'mod_site',
-#         'USER': 'mod64bits',
-#         'PASSWORD': 'DjangoTeste',
-#         'HOST': 'localhost',
-#         'PORT': '5432',
-#     }
-# }
-
+if DEBUG:
+    default_dburl = 'sqlite:///' + os.path.join(BASE_DIR, 'db.sqlite3')
+else:
+    default_dburl = config('DATABASE_URL')
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
-    }
+    'default': config('DATABASE_URL', default=default_dburl, cast=dburl),
 }
 
 
