@@ -1,1 +1,1 @@
-web: guniconr mod64bits.wsgi --log-file -
+web: gunicorn mod64bits.wsgi --log-file -
