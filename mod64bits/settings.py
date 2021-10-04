@@ -26,6 +26,9 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    'cloudinary_storage',
+    'cloudinary',
+
     'django_filters',
     'rest_framework',
     'taggit',
@@ -136,6 +139,7 @@ STATICFILES_FINDERS = [
 
 
 MEDIA_URL = '/media/'
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
@@ -169,4 +173,10 @@ CKEDITOR_CONFIGS = {
              'youtube'
          ]),
          },
+}
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': 'darheu7gf',
+    'API_KEY': '999164426956636',
+    'API_SECRET': 'BnVigU6KUEQ7J8Bo_NcEWQ1_00o'
 }
