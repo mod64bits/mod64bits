@@ -16,3 +16,4 @@ static3==0.7.0
 psycopg2
 pillow
 gunicorn
+django-cloudinary-storage
