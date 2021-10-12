@@ -1,4 +1,5 @@
 {% load static %}<!DOCTYPE html>
+{% load blog_home %}
 <html lang="pt-br">
 <head>
 	<title>mod64bits</title>
@@ -39,7 +40,7 @@
 				<li class="nav-item"><a href="#resume-section" class="nav-link"><span>Resume</span></a></li>
 				<li class="nav-item"><a href="#services-section" class="nav-link"><span>Services</span></a></li>
 <!--				<li class="nav-item"><a href="#projects-section" class="nav-link"><span>Projects</span></a></li>-->
-<!--				<li class="nav-item"><a href="#blog-section" class="nav-link"><span>My Blog</span></a></li>-->
+				<li class="nav-item"><a href="#blog-section" class="nav-link"><span>Blog</span></a></li>
 				<li class="nav-item"><a href="#contact-section" class="nav-link"><span>Contact</span></a></li>
 			</ul>
 		</div>
@@ -511,70 +512,39 @@
 <!--</section>-->
 
 
-<!--<section class="ftco-section" id="blog-section">-->
-<!--	<div class="container">-->
-<!--		<div class="row justify-content-center mb-5 pb-5">-->
-<!--			<div class="col-md-7 heading-section text-center ftco-animate">-->
-<!--				<h1 class="big big-2">Blog</h1>-->
-<!--				<h2 class="mb-4">Our Blog</h2>-->
-<!--				<p>Far far away, behind the word mountains, far from the countries Vokalia and Consonantia</p>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--		<div class="row d-flex">-->
-<!--			<div class="col-md-4 d-flex ftco-animate">-->
-<!--				<div class="blog-entry justify-content-end">-->
-<!--					<a href="single.html" class="block-20" style="background-image: url('images/image_1.jpg');">-->
-<!--					</a>-->
-<!--					<div class="text mt-3 float-right d-block">-->
-<!--						<h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>-->
-<!--						<div class="d-flex align-items-center mb-3 meta">-->
-<!--							<p class="mb-0">-->
-<!--								<span class="mr-2">Sept. 12, 2019</span>-->
-<!--								<a href="#" class="mr-2">Admin</a>-->
-<!--								<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>-->
-<!--							</p>-->
-<!--						</div>-->
-<!--						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--			<div class="col-md-4 d-flex ftco-animate">-->
-<!--				<div class="blog-entry justify-content-end">-->
-<!--					<a href="single.html" class="block-20" style="background-image: url('images/image_2.jpg');">-->
-<!--					</a>-->
-<!--					<div class="text mt-3 float-right d-block">-->
-<!--						<h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>-->
-<!--						<div class="d-flex align-items-center mb-3 meta">-->
-<!--							<p class="mb-0">-->
-<!--								<span class="mr-2">Sept. 12, 2019</span>-->
-<!--								<a href="#" class="mr-2">Admin</a>-->
-<!--								<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>-->
-<!--							</p>-->
-<!--						</div>-->
-<!--						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--			<div class="col-md-4 d-flex ftco-animate">-->
-<!--				<div class="blog-entry">-->
-<!--					<a href="single.html" class="block-20" style="background-image: url('images/image_3.jpg');">-->
-<!--					</a>-->
-<!--					<div class="text mt-3 float-right d-block">-->
-<!--						<h3 class="heading"><a href="single.html">Why Lead Generation is Key for Business Growth</a></h3>-->
-<!--						<div class="d-flex align-items-center mb-3 meta">-->
-<!--							<p class="mb-0">-->
-<!--								<span class="mr-2">Sept. 12, 2019</span>-->
-<!--								<a href="#" class="mr-2">Admin</a>-->
-<!--								<a href="#" class="meta-chat"><span class="icon-chat"></span> 3</a>-->
-<!--							</p>-->
-<!--						</div>-->
-<!--						<p>A small river named Duden flows by their place and supplies it with the necessary regelialia.</p>-->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
-<!--</section>-->
+<section class="ftco-section" id="blog-section">
+      <div class="container">
+        <div class="row justify-content-center mb-5 pb-5">
+          <div class="col-md-7 heading-section text-center ftco-animate">
+            <h1 class="big big-2">Blog</h1>
+            <h2 class="mb-4">mod64bits Blog</h2>
+            <p>Um Pouco Dos Meus Pensamentos e Vivencias Em Tecnologia</p>
+          </div>
+        </div>
+        <div class="row d-flex">
+            {% for artigo in artigos %}
+          <div class="col-md-4 d-flex ftco-animate">
+          	<div class="blog-entry justify-content-end">
+              <a href="{{ artigo.get_absolute_url }}" class="block-20" style="background-image: url({{ artigo.image.url }});">
+              </a>
+              <div class="text mt-3 float-right d-block">
+                <h3 class="heading"><a href="{{ artigo.get_absolute_url }}">{{ artigo.title }}</a></h3>
+                <div class="d-flex align-items-center mb-3 meta">
+	                <p class="mb-0">
+	                	<span class="mr-2">{{ artigo.date_published.date }}</span>
+	                	<a class="mr-2">{{ artigo.author }}</a>
+	                	<a class="meta-chat"><span class="icon-chat"></span> {{ artigo.comments.count }}</a>
+	                </p>
+                </div>
+                <p>{{ artigo.body | slice:"0:254"  | safe }}</p>
+              </div>
+            </div>
+          </div>
+            {% endfor %}
+
+        </div>
+      </div>
+    </section>
 
 <!--<section class="ftco-section ftco-hireme img" style="background-image: url(images/bg_1.jpg)">-->
 <!--	<div class="overlay"></div>-->
@@ -640,7 +610,7 @@
 					</div>
 					<div>
 						<h3 class="mb-4">Website</h3>
-						<p><a href="#">yoursite.com</a></p>
+						<p><a href="#">mod64bits.herokuapp.com/</a></p>
 					</div>
 				</div>
 			</div>

@@ -51,6 +51,6 @@ if settings.DEBUG:
 
 
 # Modifies default django admin titles and headers with custom app detail.
-admin.site.site_header = "Bona Admin"
-admin.site.site_title = "Bona Admin Portal"
-admin.site.index_title = "Welcome to Bona Blog Portal"
+admin.site.site_header = "Mod64bits Admin"
+admin.site.site_title = "Mod64bits Admin Portal"
+admin.site.index_title = "Welcome to mod64bits Blog Portal"
